@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Infinite number printing</h1>
+    <p id="print"></p>
+    <button id="start">Strat</button>
+    <button id="stop">stop</button>
+</body>
+<script>
+    let number=1
+    const startPrinting= function(){
+        document.querySelector('p').innerHTML+=` ${number} `;
+        number++;
+    }
+    let loop=setInterval(startPrinting,1000);
+    clearInterval(loop)
+    document.querySelector('#start').addEventListener('click',function(){
+        loop=setInterval(startPrinting,1000);
+    })
+    document.querySelector('#stop').addEventListener('click',function(){
+        clearInterval(loop)
+    })
+</script>
+</html>

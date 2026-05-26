@@ -1,7 +1,7 @@
 let randomNumber = parseInt(Math.random() * 100 + 1);
 
 const submit = document.querySelector('#subt');
-const userInput = document.querySelector('#guessField'); // Fixed typo: 'Field' instead of 'Feild'
+const userInput = document.querySelector('#guessField'); 
 const guessSlot = document.querySelector('.guesses');
 const remaining = document.querySelector('.lastResult');
 const lowOrHigh = document.querySelector('.lowOrHi');
@@ -10,8 +10,8 @@ const startOver = document.querySelector('.resultParas');
 const p = document.createElement('p');
 
 let prevGuess = [];
-let numGuess = 1; // Tracks current attempt number (starts at 1)
-let playGame = true; // Unified variable name spelling
+let numGuess = 1; 
+let playGame = true;
 
 if (playGame) {
     submit.addEventListener('click', function(e) {
@@ -21,7 +21,7 @@ if (playGame) {
     });
 }
 
-function validateGuess(guess) { // Fixed typo: 'validateGuess'
+function validateGuess(guess) { 
     if (isNaN(guess)) {
         alert('Please enter a valid number');
     } else if (guess < 1) {
@@ -30,8 +30,6 @@ function validateGuess(guess) { // Fixed typo: 'validateGuess'
         alert('Please enter a number <= 100');
     } else {
         prevGuess.push(guess);
-        
-        // Always display the current guess and check it first
         displayGuess(guess);
         checkGuess(guess);
     }
@@ -43,14 +41,13 @@ function checkGuess(guess) {
         endGame();
     } else if (guess < randomNumber) {
         displayMessage(`Number is higher than ${guess}`);
-        checkGameOver(); // Look to see if that was their last turn
+        checkGameOver(); 
     } else {
         displayMessage(`Number is lower than ${guess}`);
-        checkGameOver(); // Look to see if that was their last turn
+        checkGameOver(); 
     }
 }
 
-// Extracted game-over logic here to cleanly check after a wrong answer
 function checkGameOver() {
     if (numGuess > 10) { 
         displayMessage(`Game over. The random number was ${randomNumber}`);
@@ -66,7 +63,6 @@ function displayGuess(guess) {
     userInput.value = '';
     guessSlot.innerHTML += `${guess} `;
     numGuess++;
-    // Maximum 10 turns, so remaining turns is 11 - numGuess
     remaining.innerHTML = `${11 - numGuess}`;
 }
 
@@ -74,7 +70,7 @@ function endGame() {
     userInput.value = '';
     userInput.setAttribute('disabled', '');
     p.classList.add('button');
-    p.innerHTML = `<h2 id="newGame" style="cursor:pointer; background:#212121; color:#fff; padding:10px; border-radius:5px; text-align:center;">Start new game</h2>`;
+    p.innerHTML = `<h2 id="newGame">Start new game</h2>`;
     startOver.appendChild(p);
     playGame = false;
     newGame();
